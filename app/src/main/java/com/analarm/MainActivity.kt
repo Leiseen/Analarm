@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 import java.util.Calendar
+import android.net.Uri
 
 class MainActivity : AppCompatActivity() {
 
@@ -145,11 +146,10 @@ class MainActivity : AppCompatActivity() {
     private fun scheduleAlarm(alarm: Alarm) {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-        // --- 核心修正：Intent里只放ID，保持干净 ---
         val intent = Intent(this, AlarmReceiver::class.java).apply {
             putExtra("ALARM_ID", alarm.id)
+            data = Uri.parse("analarm://${alarm.id}")
         }
-        // -----------------------------------------
 
         val pendingIntent = PendingIntent.getBroadcast(
             this, alarm.id.toInt(), intent,
@@ -196,13 +196,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun cancelAlarm(alarm: Alarm) {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(this, AlarmReceiver::class.java)
+
+        // --- 核心修正：确保这里的Intent和scheduleAlarm里的一样 ---
+        val intent = Intent(this, AlarmReceiver::class.java).apply {
+            // 同样加上这个独一无二的“身份证”，才能精确匹配到要取消的那个
+            data = Uri.parse("analarm://${alarm.id}")
+        }
+        // ----------------------------------------------------
+
+        // 注意：这里的Flag也必须和scheduleAlarm里的完全一样！
+        // 我们上次把它改成了只有FLAG_IMMUTABLE
+        val pendingIntentFlag = PendingIntent.FLAG_IMMUTABLE
+
         val pendingIntent = PendingIntent.getBroadcast(
             this,
             alarm.id.toInt(),
             intent,
-            PendingIntent.FLAG_IMMUTABLE
+            pendingIntentFlag
         )
+
         alarmManager.cancel(pendingIntent)
     }
 
