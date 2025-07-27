@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="重复"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ToggleButton android:id="@+id/toggle_sun" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textOff="日" android:textOn="日" />
+            <ToggleButton android:id="@+id/toggle_mon" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textOff="一" android:textOn="一" />
+            <ToggleButton android:id="@+id/toggle_tue" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textOff="二" android:textOn="二" />
+            <ToggleButton android:id="@+id/toggle_wed" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textOff="三" android:textOn="三" />
+            <ToggleButton android:id="@+id/toggle_thu" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textOff="四" android:textOn="四" />
+            <ToggleButton android:id="@+id/toggle_fri" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textOff="五" android:textOn="五" />
+            <ToggleButton android:id="@+id/toggle_sat" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textOff="六" android:textOn="六" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="关闭方式"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/dismissMethodGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radio_math"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数学题" />
+            <RadioButton
+                android:id="@+id/radio_qr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扫描二维码" />
+        </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="響鈴歌單"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/folderPathTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="默認鈴聲" />
+
+    <Button
+        android:id="@+id/selectFolderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="選擇文件夾" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="保存" />
+    </LinearLayout>
+</ScrollView>
